@@ -1,14 +1,29 @@
 import React from 'react';
+import Navbar from '../../common/Navbar';
 import { Link } from 'react-router-dom';
-import { Button } from '../../common';
+import { ButtonElement } from '../../common';
+import { Layout } from 'antd';
+
+const { Header, Content } = Layout;
 
 function RenderHomePage(props) {
   const { userInfo, authService } = props;
   return (
-    <div>
-      <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
-      <div>
-        <p>
+    <Layout className="layout" style={{ minHeight: '100vh' }}>
+      <Header>
+        <Navbar />
+      </Header>
+      <Content style={{ padding: '50px' }}>
+        <h1
+          style={{
+            padding: '8rem 0 2rem',
+            fontSize: '1.8rem',
+            textAlign: 'center',
+          }}
+        >
+          Hi {userInfo.name} what's your next location?
+        </h1>
+        {/* <p>
           This is an example of a common example of how we'd like for you to
           approach components.
         </p>
@@ -22,13 +37,13 @@ function RenderHomePage(props) {
           <Link to="/datavis">Data Visualizations Example</Link>
         </p>
         <p>
-          <Button
+            <ButtonElement
             handleClick={() => authService.logout()}
             buttonText="Logout"
           />
-        </p>
-      </div>
-    </div>
+        </p> */}
+      </Content>
+    </Layout>
   );
 }
 export default RenderHomePage;
