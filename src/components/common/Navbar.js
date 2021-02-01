@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useOktaAuth } from '@okta/okta-react';
 import { ButtonElement } from './';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,9 +18,9 @@ const Navbar = () => {
         <span />
       </HamburgerMenu>
       <Menu isOpen={isOpen}>
-        <MenuLink href="">My Profile</MenuLink>
+        <MenuLink to="/profile-list">My Profile</MenuLink>
         <ButtonElement
-          danger
+          type="danger"
           handleClick={() => authService.logout()}
           buttonText="Logout"
         />
@@ -57,7 +58,7 @@ const Logo = styled.a`
     font-size: 1.3rem;
   }
 `;
-const MenuLink = styled.a`
+const MenuLink = styled(Link)`
   padding: 1rem 2rem;
   cursor: pointer;
   text-align: center;
