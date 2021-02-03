@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FormButton } from './';
+import { Link } from 'react-router-dom';
 
 const SearchForm = () => {
   const [form, setForm] = useState({ location: '', state: 'select an option' });
@@ -22,7 +23,7 @@ const SearchForm = () => {
   return (
     <div
       style={{
-        margin: '1.8rem auto',
+        margin: '3rem auto',
         display: 'flex',
         justifyContent: 'center',
       }}
@@ -100,7 +101,9 @@ const SearchForm = () => {
           value={form.location}
           onChange={handleChange}
         />
-        <FormButton buttonText="Search" type="submit" htmlType="submit" />
+        <Link to="/results">
+          <FormButton buttonText="Search" type="submit" htmlType="submit" />
+        </Link>
       </Form>
     </div>
   );
