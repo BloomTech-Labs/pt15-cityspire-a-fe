@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../../common/Navbar';
-import SearchForm from '../../common/SearchForm';
+import SearchForm from '../../common/SerachForm/SearchForm';
 import { Layout, Typography } from 'antd';
 import 'antd/dist/antd.css';
 

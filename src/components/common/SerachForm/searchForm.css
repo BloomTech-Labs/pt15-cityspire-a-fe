@@ -1,0 +1,19 @@
+.searchFormWrapper {
+    margin: 3rem auto;
+    display: flex;
+    justify-content: center;
+}
+
+.searchForm {
+    display: flex;
+}
+
+.searchInput {
+    width: 100%;
+}
+
+@media(min-width: 768px) {
+    .searchInput {
+        min-width: 500px;
+    }     
+}
