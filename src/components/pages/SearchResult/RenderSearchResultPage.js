@@ -1,29 +1,54 @@
 import React from 'react';
 import Navbar from '../../common/Navbar';
-import { Layout, Row, Col } from 'antd';
-import SearchForm from '../../common/SearchForm';
+import { Typography, Card, Button } from 'antd';
 import Map from '../Map/Map';
+import 'antd/dist/antd.css';
+import './searchResult.css';
 
-const { Header, Content } = Layout;
+const { Title } = Typography;
 
 const ResultSearchPage = props => {
   return (
-    <Layout className="layout" style={{ minHeight: '100vh' }}>
-      <Header>
-        <Navbar />
-      </Header>
-      <Content>
-        <Row>
-          <Col span={12}>col-12</Col>
-          <Col span={12}>
-            <div>
-              <SearchForm />
-              <Map style={{ border: '1px solid red' }} />
+    <>
+      <Navbar />
+      <div className="container-fluid">
+        <div className="resultWrapper">
+          <div className="site-card-border-less-wrapper">
+            <Card
+              title="Location name"
+              bordered={false}
+              style={{ width: '100% ' }}
+            >
+              <p>
+                <span>Population</span>
+              </p>
+              <p>
+                <span>Density</span>
+              </p>
+              <p>
+                <span>Safety</span>
+              </p>
+              <Title level={4}>Description</Title>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                vel nisl at arcu tristique ultrices. Suspendisse hendrerit
+                ligula id dolor bibendum tempor. Aliquam ac risus ac augue
+                mollis ornare nec non lorem. Nullam vitae erat sed leo viverra
+                venenatis. Cras pretium mi lorem, a dictum odio aliquam ut.
+              </p>
+            </Card>
+            <div className="buttonWrapper">
+              <Button type="primary" shape="round" className="addButton">
+                Add
+              </Button>
             </div>
-          </Col>
-        </Row>
-      </Content>
-    </Layout>
+          </div>
+        </div>
+        <div className="mapWrapper">
+          <Map />
+        </div>
+      </div>
+    </>
   );
 };
 

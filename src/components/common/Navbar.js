@@ -39,10 +39,11 @@ const Nav = styled.div`
   flex-wrap: wrap;
   background: RGB(219, 220, 220);
   background: #fff;
-  position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  height: 100%;
+  width: 100%;
   box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
 `;
 

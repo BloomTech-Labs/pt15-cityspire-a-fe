@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../../common/Navbar';
 import SearchForm from '../../common/SearchForm';
 import { Layout, Typography } from 'antd';
+import 'antd/dist/antd.css';
 
 const { Header, Content } = Layout;
 const { Title } = Typography;
@@ -10,7 +11,7 @@ function RenderHomePage(props) {
   const { userInfo, authService } = props;
   return (
     <Layout className="layout" style={{ minHeight: '100vh' }}>
-      <Header>
+      <Header style={{ height: '10%', padding: '0' }}>
         <Navbar />
       </Header>
       <Content style={{ padding: '50px' }}>

@@ -27,15 +27,16 @@ const Button = styled.button`
   height: 32px;
   padding: 4px 15px;
   font-size: 14px;
-  border-radius: 2px;
+  border-radius: 25px;
   color: #ec3944;
   background: #fff;
   border-color: #ec3944;
   cursor: pointer;
-  height: 45px;
+  // height: 20%;
   border: 0.5px solid #d9d9d9;
   color: rgba(0, 0, 0, 0.65);
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  width: 110px;
   &:hover {
     border: 0.5px solid #ec3944;
     color: #ec3944;

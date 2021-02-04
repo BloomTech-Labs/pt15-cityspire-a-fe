@@ -114,37 +114,37 @@ export default SearchForm;
 const Form = styled.form`
   width: 95%;
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   @media (min-width: 768px) {
-    width: 85%;
-    flex-direction: row;
+    width: 90%;
+    flex-direction: column;
   }
 `;
 
 const Select = styled.select`
     width: 100%;
-    border-radius: 5px 0 0 5px;
+    border-radius: 25px;
     border: none;
     margin-bottom: 5px;
     cursor: pointer;
     line-height: 1.3;
-    padding: 10px;
+    padding: 10px 15px;
     @media (min-width: 768px) {
         width: 20%;
         margin-bottom: 0px;
     }
     &:focus {
         outline: none;
-        border-bottom: 2px solid RGB(252, 69, 67);
+        box-shadow: 0 0.5em 0.5em -0.4em;
 `;
 
 const Input = styled.input`
   width: 100%;
   border: none;
   margin-bottom: 5px;
-  padding: 10px;
-  border-radius: 0 5px 5px 0;
+  padding: 10px 15px;
+  border-radius: 25px;
   @media (min-width: 768px) {
     width: 60%;
     margin-bottom: 0px;
@@ -152,6 +152,6 @@ const Input = styled.input`
 
   &:focus {
     outline: none;
-    border-bottom: 2px solid RGB(252, 69, 67);
+    box-shadow: 0 0.5em 0.5em -0.4em;
   }
 `;
