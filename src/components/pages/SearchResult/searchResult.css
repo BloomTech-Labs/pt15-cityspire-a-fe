@@ -1,0 +1,66 @@
+.container-fluid {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ant-layout {
+  background: #fff !important;
+}
+
+.ant-layout-header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.resultWrapper {
+    width: 100%;
+    margin-top: 80px;
+}
+
+.mapWrapper {
+    width: 100%;
+    position: relative;
+    /* margin-top: 50px; */
+}
+
+.buttonWrapper {
+    margin-left: 20px;
+}
+
+.addButton {
+   width: 150px;
+}
+
+@media(min-width: 768px) {
+    .container-fluid {
+        flex-direction: row;
+        margin-top: 20px;
+    }  
+}
+
+ @media(min-width: 768px) {
+    .resultWrapper {
+        width: 50%;
+        padding: 30px;
+        flex-wrap: wrap;
+    }   
+}
+
+@media(min-width: 768px) {
+    .mapWrapper {
+        width: 50%;
+        padding: 30px;
+    }   
+}

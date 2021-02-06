@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useOktaAuth } from '@okta/okta-react';
 import { ButtonElement } from './';
 import { Link } from 'react-router-dom';
+import { Layout, Typography, Menu, Button } from 'antd';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,21 +11,32 @@ const Navbar = () => {
   return (
     <Nav>
       <Logo>
-        City<span>Spire</span>
+        <Link to="/">
+          City<span>Spire</span>
+        </Link>
       </Logo>
       <HamburgerMenu onClick={() => setIsOpen(!isOpen)}>
         <span />
         <span />
         <span />
       </HamburgerMenu>
-      <Menu isOpen={isOpen}>
-        <MenuLink to="/profile-list">My Profile</MenuLink>
-        <ButtonElement
-          type="danger"
+      <MenuElemnet
+        isOpen={isOpen}
+        theme="dark"
+        mode="horizontal"
+        defaultSelectedKeys={['2']}
+      >
+        <MenuLink>
+          <Link to="/profile-list">My Profile</Link>
+        </MenuLink>
+        <Button
+          type="primary"
           handleClick={() => authService.logout()}
           buttonText="Logout"
-        />
-      </Menu>
+        >
+          LogOut
+        </Button>
+      </MenuElemnet>
     </Nav>
   );
 };
@@ -39,11 +51,10 @@ const Nav = styled.div`
   flex-wrap: wrap;
   background: RGB(219, 220, 220);
   background: #fff;
-  position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+  width: 100%;
 `;
 
 const Logo = styled.a`
@@ -58,6 +69,7 @@ const Logo = styled.a`
     font-size: 1.3rem;
   }
 `;
+
 const MenuLink = styled(Link)`
   padding: 1rem 2rem;
   cursor: pointer;
@@ -65,7 +77,7 @@ const MenuLink = styled(Link)`
   text-decoration: none;
 `;
 
-const Menu = styled.div`
+const MenuElemnet = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -88,7 +100,7 @@ const HamburgerMenu = styled.div`
   span {
     height: 2px;
     width: 25px;
-    background: RGB(252, 69, 67);
+    background: #1890ff;
     margin-bottom: 4px;
     border-radius: 5px;
   }

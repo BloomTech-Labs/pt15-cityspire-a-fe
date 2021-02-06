@@ -1,30 +1,31 @@
 import React from 'react';
-import Navbar from '../../common/Navbar';
-import SearchForm from '../../common/SearchForm';
-import { Layout, Typography } from 'antd';
+import HeaderElement from '../../common/Header/HeaderElement';
+import SearchForm from '../../common/SerachForm/SearchForm';
+import { Layout, Typography, Menu, Button } from 'antd';
+import 'antd/dist/antd.css';
+import './home.css';
 
-const { Header, Content } = Layout;
+const { Content, Footer } = Layout;
 const { Title } = Typography;
 
 function RenderHomePage(props) {
   const { userInfo, authService } = props;
+
   return (
-    <Layout className="layout" style={{ minHeight: '100vh' }}>
-      <Header>
-        <Navbar />
-      </Header>
-      <Content style={{ padding: '50px' }}>
-        <Title
-          style={{
-            padding: '8rem 0 2rem',
-            fontSize: '1.5rem',
-            textAlign: 'center',
-          }}
-        >
-          Hi {userInfo.name} what's your next location?
-        </Title>
-        <SearchForm />
+    <Layout className="layout" style={{ height: '100vh' }}>
+      <HeaderElement />
+      <Content
+        className="contentWrapper"
+        style={{ padding: '0 50px', marginTop: 64 }}
+      >
+        <div className="site-layout-content">
+          <Title className="homeTitle" style={{ fontWeight: 300 }}>
+            Hi, <span>{userInfo.name}</span> what's your next location?
+          </Title>
+          <SearchForm />
+        </div>
       </Content>
+      <Footer style={{ textAlign: 'center' }}>CitySpire ©2021</Footer>
     </Layout>
   );
 }
