@@ -1,4 +1,3 @@
-
 .container-fluid {
   margin: 0 auto;
   width: 100%;
@@ -27,11 +26,13 @@
 
 .resultWrapper {
     width: 100%;
+    margin-top: 80px;
 }
 
 .mapWrapper {
     width: 100%;
     position: relative;
+    /* margin-top: 50px; */
 }
 
 .buttonWrapper {
