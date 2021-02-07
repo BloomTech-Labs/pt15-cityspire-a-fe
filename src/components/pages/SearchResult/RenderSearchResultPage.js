@@ -29,14 +29,11 @@ const ResultSearchPage = props => {
                 <p>
                   <span>Safety</span>
                 </p>
-                <Title level={4}>Description</Title>
+                <Title level={4}>Comments</Title>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Nullam vel nisl at arcu tristique ultrices. Suspendisse
-                  hendrerit ligula id dolor bibendum tempor. Aliquam ac risus ac
-                  augue mollis ornare nec non lorem. Nullam vitae erat sed leo
-                  viverra venenatis. Cras pretium mi lorem, a dictum odio
-                  aliquam ut.
+                  hendrerit ligula id dolor bibendum tempor.
                 </p>
               </Card>
               <div className="buttonWrapper">

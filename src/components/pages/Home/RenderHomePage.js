@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderElement from '../../common/Header/HeaderElement';
 import SearchForm from '../../common/SerachForm/SearchForm';
-import { Layout, Typography, Menu, Button } from 'antd';
+import { Layout, Typography } from 'antd';
 import 'antd/dist/antd.css';
 import './home.css';
 
