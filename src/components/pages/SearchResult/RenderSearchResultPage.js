@@ -1,12 +1,14 @@
 import React from 'react';
 import HeaderElement from '../../common/Header/HeaderElement';
-import { Typography, Card, Button, Layout } from 'antd';
+import { Typography, Card, Button, Layout, Input } from 'antd';
 import Map from '../Map/Map';
 import 'antd/dist/antd.css';
 import './searchResult.css';
 
 const { Title } = Typography;
 const { Content, Footer } = Layout;
+const { TextArea } = Input;
+
 const ResultSearchPage = props => {
   return (
     <Layout className="layout" style={{ height: '100vh' }}>
@@ -30,17 +32,13 @@ const ResultSearchPage = props => {
                   <span>Safety</span>
                 </p>
                 <Title level={4}>Comments</Title>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam vel nisl at arcu tristique ultrices. Suspendisse
-                  hendrerit ligula id dolor bibendum tempor.
-                </p>
+                <TextArea rows={4} />
+                <div className="buttonWrapper">
+                  <Button type="primary" shape="round" className="addButton">
+                    Add
+                  </Button>
+                </div>
               </Card>
-              <div className="buttonWrapper">
-                <Button type="primary" shape="round" className="addButton">
-                  Add
-                </Button>
-              </div>
             </div>
           </div>
           <div className="mapWrapper">
