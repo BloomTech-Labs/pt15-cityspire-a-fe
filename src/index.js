@@ -19,6 +19,7 @@ import { ExampleDataViz } from './components/pages/ExampleDataViz';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { ResultSearchPage } from './components/pages/SearchResult';
+import { MyLocationsPage } from './components/pages/MyLocations';
 
 ReactDOM.render(
   <Router>
@@ -56,6 +57,7 @@ function App() {
         <SecureRoute path="/profile-list" component={ProfileListPage} />
         <SecureRoute path="/datavis" component={ExampleDataViz} />
         <SecureRoute path="/results" component={ResultSearchPage} />
+        <SecureRoute path="/my-locations" component={MyLocationsPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>

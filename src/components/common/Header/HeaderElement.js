@@ -1,8 +1,9 @@
 import React from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { Link } from 'react-router-dom';
-import { Layout, Menu, Button } from 'antd';
+import { Layout, Menu } from 'antd';
 import { ButtonElement } from '..';
+import 'antd/dist/antd.css';
 import './header.css';
 
 const { Header } = Layout;
@@ -19,7 +20,7 @@ const HeaderElement = () => {
           <Link to="/profile-list">My Profile</Link>
         </Menu.Item>
         <Menu.Item key="3">
-          <Link to="/profile-list">My Locations</Link>
+          <Link to="/my-locations">My Locations</Link>
         </Menu.Item>
         <Menu.Item key="4">
           <ButtonElement
