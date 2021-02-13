@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import HeaderElement from '../../common/Header/HeaderElement';
 import { Typography, Layout, List, Card, Input, Space, Row, Col } from 'antd';
 import 'antd/dist/antd.css';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import './myLocations.css';
+import { LocationContext } from '../../../state/contexts';
 
 const data = [
   {
@@ -82,6 +83,8 @@ const RenderMyLocationsPage = () => {
     setComment(val);
     setComment(input);
   };
+
+  const value = useContext(LocationContext);
 
   return (
     <Layout className="layout" style={{ minHeight: '100vh' }}>
