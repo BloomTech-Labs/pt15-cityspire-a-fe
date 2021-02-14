@@ -55,7 +55,6 @@ function App() {
             component={() => <HomePage LoadingComponent={LoadingComponent} />}
           />
           <SecureRoute path="/example-list" component={ExampleListPage} />
-
           <SecureRoute path="/profile-list" component={ProfileListPage} />
           <SecureRoute path="/datavis" component={ExampleDataViz} />
           <SecureRoute path="/results" component={ResultSearchPage} />
