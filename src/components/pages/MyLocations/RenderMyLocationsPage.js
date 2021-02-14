@@ -1,10 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import HeaderElement from '../../common/Header/HeaderElement';
-import { Typography, Layout, List, Card, Input, Space, Row, Col } from 'antd';
+import { Typography, Layout, List, Card, Input } from 'antd';
 import 'antd/dist/antd.css';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import './myLocations.css';
-import { LocationContext } from '../../../state/contexts';
 
 const data = [
   {
@@ -84,8 +83,6 @@ const RenderMyLocationsPage = () => {
     setComment(input);
   };
 
-  const value = useContext(LocationContext);
-
   return (
     <Layout className="layout" style={{ minHeight: '100vh' }}>
       <HeaderElement />
@@ -94,9 +91,7 @@ const RenderMyLocationsPage = () => {
           <Title
             className="locationsListTitle"
             style={{ fontWeight: 300, textAlign: 'center' }}
-          >
-            My Locations
-          </Title>
+          ></Title>
           <div className="site-card-wrapper">
             <List
               style={{ padding: '10px' }}
