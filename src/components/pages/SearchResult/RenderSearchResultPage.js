@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import HeaderElement from '../../common/Header/HeaderElement';
 import { Typography, Card, Button, Layout, Input } from 'antd';
+import { LocationContext } from '../../../state/contexts/LocationContext';
 import Map from '../Map/Map';
 import 'antd/dist/antd.css';
 import './searchResult.css';
@@ -9,7 +10,9 @@ const { Title } = Typography;
 const { Content, Footer } = Layout;
 const { TextArea } = Input;
 
-const ResultSearchPage = props => {
+const ResultSearchPage = () => {
+  const { location } = useContext(LocationContext);
+
   return (
     <Layout className="layout" style={{ height: '100vh' }}>
       <HeaderElement />
@@ -18,7 +21,7 @@ const ResultSearchPage = props => {
           <div className="resultWrapper">
             <div className="site-card-border-less-wrapper">
               <Card
-                title="Location name"
+                title={location}
                 bordered={false}
                 style={{ width: '100% ' }}
               >
