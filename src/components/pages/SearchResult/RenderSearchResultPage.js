@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import HeaderElement from '../../common/Header/HeaderElement';
 import { Typography, Card, Button, Layout, Input } from 'antd';
 import { LocationContext } from '../../../state/contexts/LocationContext';
 import Map from '../Map/Map';
 import 'antd/dist/antd.css';
 import './searchResult.css';
+import axiosWithAuth from '../../../utils/axiosWithAuth';
 
 const { Title } = Typography;
 const { Content, Footer } = Layout;
@@ -12,6 +13,29 @@ const { TextArea } = Input;
 
 const ResultSearchPage = () => {
   const { location } = useContext(LocationContext);
+  let dataForApi = location
+    .split(',')
+    .slice(0, -1)
+    .join(',');
+
+  console.log(dataForApi);
+
+  const apiURL = `/data/predict/${dataForApi}`;
+
+  console.log(apiURL);
+
+  const getCitydata = () => {
+    axiosWithAuth()
+      .get(apiURL)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+  useEffect(() => {
+    getCitydata();
+  }, []);
 
   return (
     <Layout className="layout" style={{ height: '100vh' }}>
