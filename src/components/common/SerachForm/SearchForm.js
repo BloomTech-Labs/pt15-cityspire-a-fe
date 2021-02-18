@@ -13,7 +13,7 @@ const params = {
 const mapboxApiKey = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 const SearchForm = () => {
-  const { updateLocation } = useContext(LocationContext);
+  const updateLocation = useContext(LocationContext);
 
   const [result, setResult] = useState({ city: '', center: [] });
 
