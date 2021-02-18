@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import HeaderElement from '../../common/Header/HeaderElement';
 import { Typography, Card, Button, Layout, Input } from 'antd';
 import { LocationContext } from '../../../state/contexts/LocationContext';
+import DataResultCard from './DataResultCard';
 import Map from '../Map/Map';
 import 'antd/dist/antd.css';
 import './searchResult.css';
@@ -12,6 +13,7 @@ const { Content, Footer } = Layout;
 const { TextArea } = Input;
 
 const ResultSearchPage = () => {
+  const [cityData, setData] = useState([]);
   const { location } = useContext(LocationContext);
   let dataForApi = location
     .split(',')
@@ -24,7 +26,7 @@ const ResultSearchPage = () => {
     axiosWithAuth()
       .get(apiURL)
       .then(res => {
-        console.log(res.data);
+        setData(res.data);
       })
       .catch(err => console.log(err));
   };
@@ -45,15 +47,7 @@ const ResultSearchPage = () => {
                 bordered={false}
                 style={{ width: '100% ' }}
               >
-                <p>
-                  <span>Population</span>
-                </p>
-                <p>
-                  <span>Density</span>
-                </p>
-                <p>
-                  <span>Safety</span>
-                </p>
+                <DataResultCard citydata={cityData} />
                 <Title level={4}>Comments</Title>
                 <TextArea rows={4} />
                 <div className="buttonWrapper">
