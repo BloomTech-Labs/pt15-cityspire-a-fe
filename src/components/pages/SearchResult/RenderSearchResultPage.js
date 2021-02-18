@@ -18,11 +18,7 @@ const ResultSearchPage = () => {
     .slice(0, -1)
     .join(',');
 
-  console.log(dataForApi);
-
   const apiURL = `/data/predict/${dataForApi}`;
-
-  console.log(apiURL);
 
   const getCitydata = () => {
     axiosWithAuth()
