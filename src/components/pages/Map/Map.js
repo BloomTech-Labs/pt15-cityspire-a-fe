@@ -22,15 +22,6 @@ function Map() {
 
     const marker = new mapboxgl.Marker().setLngLat(center).addTo(map);
 
-    map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
-
-    map.addControl(
-      new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl,
-      })
-    );
-
     return () => map.remove();
   }, [center]);
 
