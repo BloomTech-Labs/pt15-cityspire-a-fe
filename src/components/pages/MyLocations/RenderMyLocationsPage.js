@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HeaderElement from '../../common/Header/HeaderElement';
 import { Typography, Layout, List, Card, Input } from 'antd';
 import 'antd/dist/antd.css';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import './myLocations.css';
+import axiosWithAuth from '../../../utils/axiosWithAuth';
 
 const data = [
   {
@@ -61,13 +62,13 @@ const RenderMyLocationsPage = () => {
   const [comment, setComment] = useState('');
   const { TextArea } = Input;
 
-  const removeLocation = key => {
-    const removedArr = [...locations].filter(location => location.key !== key);
+  const removeLocation = id => {
+    const removedArr = [...locations].filter(location => location.id !== id);
     setLocation(removedArr);
   };
 
-  const editLocation = key => {
-    const index = locations.findIndex(item => item.key === key);
+  const editLocation = id => {
+    const index = locations.findIndex(item => item.id === id);
     const editArray = [...locations];
     editArray[index] = {
       ...editArray[index],
@@ -82,6 +83,22 @@ const RenderMyLocationsPage = () => {
     setComment(val);
     setComment(input);
   };
+
+  const apiURL = '/saved';
+
+  const getLocationData = () => {
+    axiosWithAuth()
+      .get(apiURL)
+      .then(res => {
+        console.log('example of data', res.data);
+        setLocation(res.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+  useEffect(() => {
+    getLocationData();
+  }, []);
 
   return (
     <Layout className="layout" style={{ minHeight: '100vh' }}>
@@ -105,26 +122,22 @@ const RenderMyLocationsPage = () => {
               }}
               dataSource={locations}
               renderItem={item => (
-                <List.Item key={item.key}>
+                <List.Item key={item.id}>
                   <Card
                     title={item.name}
                     actions={[
                       <EditOutlined
                         key="edit"
-                        onClick={() => editLocation(item.key)}
+                        onClick={() => editLocation(item.id)}
                       />,
                       <DeleteOutlined
                         key="delete"
-                        onClick={() => removeLocation(item.key)}
+                        onClick={() => removeLocation(item.id)}
                       />,
                     ]}
                   >
-                    <p>
-                      <span>Population: {item.population}</span>
-                    </p>
-                    <p>
-                      <span>Density: {item.density}</span>
-                    </p>
+                    <p>{/* <span>Population: {item.population}</span> */}</p>
+                    <p>{/* <span>Density: {item.density}</span> */}</p>
                     <Title level={4}>Comments</Title>
                     {item.editing ? (
                       <TextArea
