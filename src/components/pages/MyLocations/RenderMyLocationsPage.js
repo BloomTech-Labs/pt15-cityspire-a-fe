@@ -1,73 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HeaderElement from '../../common/Header/HeaderElement';
 import { Typography, Layout, List, Card, Input } from 'antd';
 import 'antd/dist/antd.css';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import './myLocations.css';
-
-const data = [
-  {
-    key: 1,
-    name: 'Paris',
-    population: 2187526,
-    density: 20755,
-    comments:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nullam vel nisl at arcu tristique ultrice.',
-    editing: false,
-  },
-  {
-    key: 2,
-    name: 'Seul',
-    population: 9962393,
-    density: 15763,
-    comments:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nullam vel nisl at arcu tristique ultrice.',
-    editing: false,
-  },
-  {
-    key: 3,
-    name: 'West New York',
-    population: 49708,
-    density: 19060,
-    comments:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nullam vel nisl at arcu tristique ultrice.',
-    editing: false,
-  },
-  {
-    key: 4,
-    name: 'Seul',
-    population: 9962393,
-    density: 15763,
-    comments:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nullam vel nisl at arcu tristique ultrice.',
-    editing: false,
-  },
-  {
-    key: 5,
-    name: 'West New York',
-    population: 49708,
-    density: 19060,
-    comments:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nullam vel nisl at arcu tristique ultrice.',
-    editing: false,
-  },
-];
+import axiosWithAuth from '../../../utils/axiosWithAuth';
 
 const { Title } = Typography;
 const { Content, Footer } = Layout;
 
 const RenderMyLocationsPage = () => {
-  const [locations, setLocation] = useState(data);
+  const [locations, setLocation] = useState([]);
   const [comment, setComment] = useState('');
   const { TextArea } = Input;
 
-  const removeLocation = key => {
-    const removedArr = [...locations].filter(location => location.key !== key);
-    setLocation(removedArr);
-  };
-
-  const editLocation = key => {
-    const index = locations.findIndex(item => item.key === key);
+  const editLocation = id => {
+    const index = locations.findIndex(item => item.id === id);
     const editArray = [...locations];
     editArray[index] = {
       ...editArray[index],
@@ -82,6 +30,32 @@ const RenderMyLocationsPage = () => {
     setComment(val);
     setComment(input);
   };
+
+  const apiURL = '/saved';
+
+  const getLocationData = () => {
+    axiosWithAuth()
+      .get(apiURL)
+      .then(res => {
+        setLocation(res.data);
+      })
+      .catch(err => console.log(`Error: ${err}`));
+  };
+
+  const deleteLocationData = id => {
+    axiosWithAuth()
+      .delete(`/saved/${id}`)
+      .then(() => {
+        getLocationData();
+      })
+      .catch(err => {
+        console.log(`Error: ${err}`);
+      });
+  };
+
+  useEffect(() => {
+    getLocationData();
+  }, []);
 
   return (
     <Layout className="layout" style={{ minHeight: '100vh' }}>
@@ -105,26 +79,22 @@ const RenderMyLocationsPage = () => {
               }}
               dataSource={locations}
               renderItem={item => (
-                <List.Item key={item.key}>
+                <List.Item key={item.id}>
                   <Card
                     title={item.name}
                     actions={[
                       <EditOutlined
                         key="edit"
-                        onClick={() => editLocation(item.key)}
+                        onClick={() => editLocation(item.id)}
                       />,
                       <DeleteOutlined
                         key="delete"
-                        onClick={() => removeLocation(item.key)}
+                        onClick={() => deleteLocationData(item.id)}
                       />,
                     ]}
                   >
-                    <p>
-                      <span>Population: {item.population}</span>
-                    </p>
-                    <p>
-                      <span>Density: {item.density}</span>
-                    </p>
+                    <p>{/* <span>Population: {item.population}</span> */}</p>
+                    <p>{/* <span>Density: {item.density}</span> */}</p>
                     <Title level={4}>Comments</Title>
                     {item.editing ? (
                       <TextArea
