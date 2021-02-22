@@ -15,18 +15,29 @@ const { TextArea } = Input;
 const ResultSearchPage = () => {
   const [cityData, setData] = useState([]);
   const { location } = useContext(LocationContext);
+  const [comment, setComment] = useState('');
   let dataForApi = location
     .split(',')
     .slice(0, -1)
     .join(',');
 
   const apiURL = `/data/predict/${dataForApi}`;
+  const postURL = '/saved';
 
   const getCitydata = () => {
     axiosWithAuth()
       .get(apiURL)
       .then(res => {
         setData(res.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const postCityData = () => {
+    axiosWithAuth()
+      .post(postURL, { name: location, city_id: cityData.id_num })
+      .then(res => {
+        console.log(res.data);
       })
       .catch(err => console.log(err));
   };
@@ -49,9 +60,14 @@ const ResultSearchPage = () => {
               >
                 <DataResultCard citydata={cityData} />
                 <Title level={4}>Comments</Title>
-                <TextArea rows={4} />
+                <TextArea rows={4} onChange={e => setComment(e.target.value)} />
                 <div className="buttonWrapper">
-                  <Button type="primary" shape="round" className="addButton">
+                  <Button
+                    type="primary"
+                    shape="round"
+                    className="addButton"
+                    onClick={postCityData}
+                  >
                     Add
                   </Button>
                 </div>

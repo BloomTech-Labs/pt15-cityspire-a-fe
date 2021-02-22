@@ -6,66 +6,13 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import './myLocations.css';
 import axiosWithAuth from '../../../utils/axiosWithAuth';
 
-const data = [
-  {
-    key: 1,
-    name: 'Paris',
-    population: 2187526,
-    density: 20755,
-    comments:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nullam vel nisl at arcu tristique ultrice.',
-    editing: false,
-  },
-  {
-    key: 2,
-    name: 'Seul',
-    population: 9962393,
-    density: 15763,
-    comments:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nullam vel nisl at arcu tristique ultrice.',
-    editing: false,
-  },
-  {
-    key: 3,
-    name: 'West New York',
-    population: 49708,
-    density: 19060,
-    comments:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nullam vel nisl at arcu tristique ultrice.',
-    editing: false,
-  },
-  {
-    key: 4,
-    name: 'Seul',
-    population: 9962393,
-    density: 15763,
-    comments:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nullam vel nisl at arcu tristique ultrice.',
-    editing: false,
-  },
-  {
-    key: 5,
-    name: 'West New York',
-    population: 49708,
-    density: 19060,
-    comments:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Nullam vel nisl at arcu tristique ultrice.',
-    editing: false,
-  },
-];
-
 const { Title } = Typography;
 const { Content, Footer } = Layout;
 
 const RenderMyLocationsPage = () => {
-  const [locations, setLocation] = useState(data);
+  const [locations, setLocation] = useState([]);
   const [comment, setComment] = useState('');
   const { TextArea } = Input;
-
-  const removeLocation = id => {
-    const removedArr = [...locations].filter(location => location.id !== id);
-    setLocation(removedArr);
-  };
 
   const editLocation = id => {
     const index = locations.findIndex(item => item.id === id);
@@ -90,10 +37,20 @@ const RenderMyLocationsPage = () => {
     axiosWithAuth()
       .get(apiURL)
       .then(res => {
-        console.log('example of data', res.data);
         setLocation(res.data);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(`Error: ${err}`));
+  };
+
+  const deleteLocationData = id => {
+    axiosWithAuth()
+      .delete(`/saved/${id}`)
+      .then(() => {
+        getLocationData();
+      })
+      .catch(err => {
+        console.log(`Error: ${err}`);
+      });
   };
 
   useEffect(() => {
@@ -132,7 +89,7 @@ const RenderMyLocationsPage = () => {
                       />,
                       <DeleteOutlined
                         key="delete"
-                        onClick={() => removeLocation(item.id)}
+                        onClick={() => deleteLocationData(item.id)}
                       />,
                     ]}
                   >
